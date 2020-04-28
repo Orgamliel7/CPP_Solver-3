@@ -6,6 +6,7 @@ using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
 
 TEST_CASE("Tests for RealVariable operator + and - ") {
+    RealVariable x;
     CHECK(solve(2 * x + 4 * x == 60) == 10);
     CHECK(solve(2 * x + 4 * x == 60) == 10);
     CHECK(solve(2 * x + 4 * x == 60) == 10);
