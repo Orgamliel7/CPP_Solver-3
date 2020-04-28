@@ -1,144 +1,161 @@
-
 #include "doctest.h"
+#include <complex>
 #include "solver.hpp"
+
 using namespace std;
 using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
-
-TEST_CASE("Tests for RealVariable operator + and - ") {
+TEST_CASE("Test case for various equations")
+{
     RealVariable x;
+    ComplexVariable y;
+    complex <double> four{ 4,0 };
+    complex <double> eight{ 8,0 };
+    complex <double> four_i{ 0,4.0 };
+    complex <double> two_i{ 0,2.0 };
 
-    CHECK(solve(25 + x - 41 == 10) == double(26));
-    CHECK(solve(2 + x - 11 == 102) == double(111));
-    CHECK(solve(4 - x - 4.8 == 22) == double(-22.8));
-    CHECK(solve(9 - x - 7.5 == 54) == double(-52.5));
-    CHECK(solve(12 + x + 3 == 60) == double(45));
-    CHECK(solve(2 - x == 10.1) == double(-8.1));
-    CHECK(solve(33 + x - 4 == 4.8) == double(-24.2));
-    CHECK(solve(4 + x == 10) == double(6));
-    CHECK(solve(x - 4 == 17.5) == double(21.5));
-    CHECK(solve(20 + x + 6 == 100) == double(74));
-    CHECK(solve(25 + x - 41 == 10 + 4 + x + x) == double(-30));
-    CHECK(solve(2 + x + x - 11 == 10 + 31) == double(25));
-    CHECK(solve(4 - x - 4.8 == 22 + x + x + x) == double(-5.7));
-    CHECK(solve(13 - x - 7 == x + x) == double(2));
-    CHECK(solve(12 + x + 3 == 62 - 5) == double(42));
-    CHECK(solve(2 - x == 10.3 + x) == double(-4.15));
-    CHECK(solve(33.1234 + x - 4.2222 == 4.8) == double(-24.1012));
-    CHECK(solve(2.5432 + x == 1 + x + x + 11.22) == double(-9.6768));
-    CHECK(solve(x - 4 == 17.5 + 44) == double(65.5));
-    CHECK(solve(20 + x + 6 == 100 - 3 + x + x) == double(-71));
+
+
+
+
+
+    CHECK(solve(5*x - 6 = 3*x - 8) == -1);
+    CHECK((solve((x ^ 2) == 64) == 8) || solve((x ^ 2) == 64) == -8);
+   // CHECK((solve((y ^ 2) == -64) == eight);
+    CHECK(solve(12*x -18 == -6+8*x) == 3); 
+    CHECK(solve(3*x+3+10-5*x == 8) == 2.5);
+    CHECK(solve(17*x+12 == 54-4*x) == 2);
+    CHECK(solve(6*x-16 == 5*x-9) == 7);
+    CHECK(solve(4*x-4 == 3*x+2) == 6);  
+    CHECK(solve(5*x -3*x == 36-1*x) == 12);
+    CHECK(solve(7*x-12+5 == 8*x-24) == 17);
+    CHECK(solve(30 -1*x+12 == 3*x+2) == 10);
+    CHECK(solve (6*x-30 == 60-8*x) ==45/7);
+    CHECK(solve(9*x - 16 == 3*x-x+5) == 3);
+    CHECK(solve(5*x -10 +2*x == 6*x+6-1*x) == 8);
+    CHECK(solve(10*x+2 == 1*x+2) == 0);
+    CHECK(solve(5*x+5 == 2*x-10+6) == -3);
+
+    /* complex test
+    CHECK(solve((y ^ 2) == 16) == four);  
+    CHECK(solve((y ^ 2) == -16) == four_i);  
+    CHECK((solve((x ^ 2) +4*x+1 == 10+4*x) == 3) || (solve((x ^ 2) + 4 * x + 1 == 10 + 4 * x) == -3));
+    CHECK(solve(y + 5i == 2 * y + 3i) == two_i);  
+    */
+    CHECK(solve(1*x+150 == 4*x-30) == 60);
+    CHECK(solve(1+1*x == -8-8*x) == -1);
+    CHECK(solve(2*x+7-5*x-12 == -1*x+3) == -4);
+    CHECK(solve(3*x+21 == 10*x) == 3);
+    CHECK(solve(12*x+7-5*x-10 == -1*x+3) == 0.75);
+    CHECK(solve(13*x -8*x -4*x == 66-32-18) == 16);
+    CHECK(solve(3*x == 9) == 3);
+    CHECK(solve(7*x == 28) == 4);
+    CHECK(solve(10*x == -60) == -6);
+    CHECK(solve(-4*x == -36) == 9);
+    CHECK(solve(1*x+4*x == 6+3+1) == 2);
+    CHECK(solve(3*x-1*x == 10) == 2);
+    CHECK(solve(17 * x+4*x == 65-2) == 3);
+    CHECK(solve(5*x+1*x == 45-3) == 7);
+    CHECK(solve(11*x+4*x == 10+10+25) == 3);
+    CHECK(solve(8*x+4*x-2*x == 37-7+10) == 4);
+
+    CHECK(solve(7 * x + 6*x+3*x == 17+9+6) == 2);
+    CHECK(solve(5 * x -2 * x-1*x ==11-2+15) == 12);
+    CHECK(solve(20*x+7*x-3*x == 55+32-15) == 3);
+    CHECK(solve(-2*x+7*x-4*x == 10-5) == 5);
+    CHECK(solve(-11*x+6*x-3*x == -20-3-9) == 4);
+    CHECK(solve(-13*x+16*x+1*x== -4-8+44) == 8);
+    CHECK(solve(-1*x-21*x+2*x == 75-6+31) == -5);
+    CHECK(solve(-1*x+6 == 3*x-2) == 2);
+    CHECK(solve(10*x+8 == 4*x+44) == 6);
+    CHECK(solve(-7*x-10 == 2-3*x) == -3);
+    CHECK(solve(35-13*x == 19-5*x) == 2);
+    CHECK(solve(-17*x+8 ==x+44) == -2);
+    CHECK(solve(-10*x+5+1*x == 6*x-9+29) == -1);
+    CHECK(solve(22+6*x+2 ==3*x+14+5*x) == 5);
+    CHECK(solve(-45*x+30+31*x == 32+16*x+28) == -1);
+    CHECK(solve(-115*+44-1*x+21 ==-4+13*x+8-9*x+1) == 0.5);
+
+    // quadratic equation test
+    CHECK((solve((x ^ 2) -5 * x == 6) == 6) || (solve((x ^ 2) - 5 * x == 6) == -1));
+    CHECK((solve((4*x) ^ 2) - 5 * x == 6) == 2) || (solve(((4*x) ^2) - 5*x == 6) == -0.75));
+    CHECK((solve(((4 * x) ^ 2) + 2 * x == 6) == 1) || (solve(((4 * x) ^ 2) +2*x == 6) == -1.5));
+    CHECK((solve((4 * x) ^ 2) + 10 * x == 6) == 0.5) || (solve(((4 * x) ^ 2) + 10 * x == 6) == -3));
+
+    CHECK(solve(1*x -4 ==12) == 16);
+    CHECK(solve(7+1*x ==9) == 2);
+    CHECK(solve(3 == 1*x-5) == 8);
+    CHECK(solve(-11 == -2+1*x) == -9);
+    CHECK(solve(0.5 * x  == 2) == 4);
+    CHECK(solve(2 + 1 * x == 1) == -1);
+    CHECK(solve(8 == 1 * x - 5) == 13);
+    CHECK(solve(2 == -2 + 1 * x) == 4);
+    CHECK(solve(0.5 * x == 6) == 12);
+    CHECK(solve(43 + 1 * x == 1) == 42);
+    CHECK(solve(8-2+3 == 1 * x - 5) == 14);
+    CHECK(solve(21 == -2 + 1 * x) == 23);
+    CHECK(solve(2 * x +4 == 6) == 1);
+    CHECK(solve(3*x + 1 * x == 8) == 2);
+    CHECK(solve(4*x == 1 * x - 15) == -5);
+    CHECK(solve(50 == -2 +2+ 1 * x) == 50);
+
+    CHECK(solve(2 * x + 4*x == 60) == 10);
+    CHECK(solve(1 * x + 1 * x == 20+40) == 30);
+    CHECK(solve(7 * x == 1 * x + 48) == 8);
+    CHECK(solve(230 == -2 + 2 + 1 * x) == 230);
+    CHECK(solve(4 * x + 4 * x + 3*x == 22+22) == 4);
+    CHECK(solve(1 * x + 7 * x == 20 + 40+20) == 10);
+    CHECK(solve(4 * x == 2 * x + 32) == 16);
+    CHECK(solve(3400 == -4 + 2+2 + 1 * x) == 3400);
+    CHECK(solve(23 * x + 8 * x == 217) == 7);
+    CHECK(solve(1 * x + 1 * x == 20*x - 90) == 5);
+    CHECK(solve(9 * x == 6 * x + 63) == 21);
+    CHECK(solve(555 == -20 + 20 + 1 * x) == 555);
+    CHECK(solve(90 * x + 4 * x + 3 * x == 190+4) == 2);
+    CHECK(solve(150 * x + 7 * x == 20 + 40 + 20+77) == 1);
+    CHECK(solve(41 * x == 22 * x + 47.5) == 2.5);
+    CHECK(solve(23432 == -8 + 2 + 2 + 4 + 1 * x) == 23432);
+   
+    CHECK(solve(54 * x + 4 * x == 348) == 6);
+    CHECK(solve(4 * x + 3 * x == 9 * x + 9+9) == -9);
+    CHECK(solve(23 * x == 2 * x + 1600+80) == 80);
+    CHECK(solve(6754 == -200 + 200 + 1 * x) == 6754);
+    CHECK(solve(244 * x + 4 * x + 3 * x -1*x == 100+100+800) == 4);
+    CHECK(solve(2 * x + 7 * x == 80+9+1) == 10);
+    CHECK(solve(72 * x == 22 * x + 50) == 1);
+    CHECK(solve(999999 == -8 + 2 + 2 + 4 -13 +10 + 3 + 1 * x) == 999999);
+    CHECK(solve(23 * x + 2 * x == 112+0.5) == 4.5);
+    CHECK(solve(2 * x + 1 * x == 9 * x + 40+2) == -7);
+    CHECK(solve(40 * x == 2 * x + 275.5) == 7.25);
+    CHECK(solve(8787 == -300 + 300 + 1 * x) == 8787);
+    CHECK(solve(23 * x + 4 * x + 3 * x - 1 * x == 50+8) == 2);
+    CHECK(solve(3 * x + 7 * x == 100 + 50) == 15);
+    CHECK(solve(1 * x == 2 * x + 21) == -21);
+    CHECK(solve(777 == -8 + 2 + 2 + 4 - 13 + 10 + 3 + 1 * x -1*x + 1*x) == 777);
+ 
+    // g
+    CHECK(solve(54 * x + 4 * x == 348) == 6);
+    CHECK(solve(4 * x + 3 * x == 9 * x + 9 + 9) == -9);
+    CHECK(solve(23 * x == 2 * x + 1600 + 80) == 80);
+    CHECK(solve(6754 == -200 + 200 + 1 * x) == 6754);
+    CHECK(solve(244 * x + 4 * x + 3 * x - 1 * x == 100 + 100 + 800) == 4);
+    CHECK(solve(2 * x + 7 * x == 80 + 9 + 1) == 10);
+    CHECK(solve(72 * x == 22 * x + 50) == 1);
+    CHECK(solve(999999 == -8 + 2 + 2 + 4 - 13 + 10 + 3 + 1 * x) == 999999);
+    CHECK(solve(23 * x + 2 * x == 112 + 0.5) == 4.5);
+    CHECK(solve(2 * x + 1 * x == 9 * x + 40 + 2) == -7);
+    CHECK(solve(40 * x == 2 * x + 275.5) == 7.25);
+    CHECK(solve(8787 == -300 + 300 + 1 * x) == 8787);
+    CHECK(solve(23 * x + 4 * x + 3 * x - 1 * x == 50 + 8) == 2);
+    CHECK(solve(3 * x + 7 * x == 100 + 50) == 15);
+    CHECK(solve(1 * x == 2 * x + 21) == -21);
+    CHECK(solve(777 == -8 + 2 + 2 + 4 - 13 + 10 + 3 + 1 * x - 1 * x + 1 * x) == 777);
+
 }
 
 
 
-TEST_CASE("Tests for RealVariable operator * and / ") {
-    RealVariable x;
-
-    CHECK(solve(2 * x - 4 == 10 * x) == double(-0.5));
-    CHECK(solve(2 + x - 101 == 12 * x) == double(-9));
-    CHECK(solve(4 - x - 4.8 * x == 22) == double(-3.1034));
-    CHECK(solve(5 * x - x - 7.5 == 5 - 10) == double(0.625));
-    CHECK(solve(12 + x + 13 == 60 * x) == double(0.4237));
-    CHECK(solve(2 * x / 2 == 10) == double(10));
-    CHECK(solve(33 * x / 3 == 4 * x) == double(0));
-    CHECK(solve(4 * x == 10 + x / 4.5) == double(2.6470));
-    CHECK(solve(-4 * x == 17.5 / x) == double(-2.0916));
-    CHECK(solve(200 * x == 100) == double(0.5));
-    CHECK(((solve(25 * x - 41 == 10 + 4 / x)) == double(2.1156) || (solve(25 * x - 41 == 10 + 4 / x) == double(-0.0756))));
-    CHECK(solve(20 * x + 5 == -10 * x / 2) == double(-0.2));
-    CHECK(solve(4 * x - 4.8 * x == 22) == double(-27.5));
-    CHECK(solve(16 * x / 2 == x / x) == double(0.125));
-    CHECK(solve(12 * x / 3 == 62 - 5) == double(14.25));
-    CHECK(solve(2 * x == 10.3 * x) == double(0));
-    CHECK(solve(33.1234 * x - 4.2222 == 4.8) == double(0.2723));
-    CHECK(solve(12 / x == 12 / x + 4 * x + 4) == double(-1));
-    CHECK(solve(-4 / 4 * x == 44) == double(-44));
-    CHECK(solve(20 * x + 6 == 100 - 3 * x) == double(4.0869));
-}
-
-TEST_CASE("Tests for RealVariable operator ^ ") {
-    RealVariable x;
-    CHECK(solve((x ^ 2) - 4 * x == +21) == double(-3));
-    CHECK((solve((x ^ 2) - 9 * x == -8) == double(8) || solve((x ^ 2) - 9 * x == -8) == double(1)));
-    CHECK(solve((x ^ 2) + (x ^ 2) + 5 * x + 3 == 0) == double(-1.5));
-    CHECK((solve((x ^ 2) - 2 == 2) == double(2) || solve((x ^ 2) - 2 == 2) == double(-2)));
-    CHECK((solve(12 + x + 13 == 60 * x + (x ^ 2)) == double(0.4207) || solve(12 + x + 13 == 60 * x + (x ^ 2)) == double(-59.4207)));
-    CHECK((solve((x ^ 2) == 25) == double(5) || solve((x ^ 2) == 25) == double(-5)));
-    CHECK_THROWS(solve((x ^ 2) + 36 + x == -3));
-    CHECK((solve((x ^ 2) + (x ^ 2) + (x ^ 2) + (x ^ 2) == 4) == double(1) || solve((x ^ 2) + (x ^ 2) + (x ^ 2) + (x ^ 2) == 4) == double(-1)));
-    CHECK_THROWS(solve((x ^ 2) + 3 + x == -3));
-    CHECK_THROWS(solve((x ^ 2) + 36 == -3));
-    CHECK_THROWS(solve((x ^ 2) + 50 == -30));
-}
-
-TEST_CASE("Tests for ComplexVariable operator + and - ") {
-    ComplexVariable x;
-
-    CHECK(solve(25 + x - 41 == 10) == complex<double>(26, 0));
-    CHECK(solve(2 + x - 11 == 102) == complex<double>(111, 0));
-    CHECK(solve(12 + x + 3 == 60) == complex<double>(45, 0));
-    CHECK(solve(33 + x - 4 == 4.8) == complex<double>(-24.2, 0));
-    CHECK(solve(4 + x == 10) == complex<double>(6, 0));
-    CHECK(solve(x - 4 == 17.5) == complex<double>(21.5, 0));
-    CHECK(solve(20 + x + 6 == 100) == complex<double>(74, 0));
-    CHECK(solve(25 + x - 41 == 10 + 4 + x + x) == complex<double>(-30, 0));
-    CHECK(solve(2 + x + x - 11 == 10 + 31) == complex<double>(25, 0));
-    CHECK(solve(12 + x + 3 == 62 - 5) == complex<double>(42, 0));
-    CHECK(solve(33 + x - 4.2222 == 4.8) == complex<double>(-23.9778, 0));
-    CHECK(solve(x - 4 == 17.5 + 44) == complex<double>(65.5, 0));
-
-}
-
-TEST_CASE("Tests for ComplexVariable operator * and / and ^ ") {
-    ComplexVariable x;
 
 
-    CHECK(((solve((x ^ 2) + 3 + 2 * x == 1)) == complex<double>(-1, -1) ||
-        (solve((x ^ 2) + 3 + 2 * x == 1)) == complex<double>(-1, +1)));
-    CHECK(solve(2 * x - 4 == 10 * x) == complex<double>(-0.5, 0));
-    CHECK(solve(2 + x - 101 == 12 * x) == complex<double>(-9, 0));
-    CHECK(solve(5 * x - x - 7.5 == 5 - 10) == complex<double>(0.6250, 0));
-    CHECK(((solve((x ^ 2) + 16 + 2 * x == 6)) == complex<double>(-1, 3) ||
-        (solve((x ^ 2) + 3 + 2 * x == 1)) == complex<double>(-1, -3)));
-    CHECK(solve(2 * x / 2 == 10) == complex<double>(10, 0));
-    CHECK(solve(33 * x / 3 == 4 * x) == complex<double>(0, 0));
-    CHECK(solve(4 * x == 10 + x / 4.5) == complex<double>(2.6470, 0));
-    CHECK((solve((x ^ 2) + 36 + x == -3) == complex<double>(-0.5, 6.2249) ||
-        solve(((x ^ 2) + 36 + x == -3)) == complex<double>(-0.5, -6.2249)));
-    CHECK(solve(20 * x + 5 == -10 * x / 2) == complex<double>(-0.2, 0));
-    CHECK(solve(4 * x - 4.8 * x == 22) == complex<double>(-27.5, 0));
-    CHECK(((solve((x ^ 2) + 10 + 4 * x == -3)) == complex<double>(-2, 3) ||
-        (solve((x ^ 2) + 3 + 2 * x == 1)) == complex<double>(-2, -3)));
-    CHECK(solve(2 * x == 10.3 * x) == complex<double>(0, 0));
-    CHECK(solve(33.1234 * x - 4.2222 == 4.8) == complex<double>(0.2723, 0));
-    CHECK(solve(-4 / 4 * x == 44) == complex<double>(-44, 0));
 
-}
 
-TEST_CASE("Tests for ComplexVariable") {
-    ComplexVariable x;
-
-    CHECK(solve(x + 5i == 2 * x + 3i) == complex<double>(0, 2));
-    CHECK(solve(2 * x + 11i == 38 * x + 10i) == complex<double>(0, 0.0277));
-    CHECK(solve(2 * x + 3i == 3 * x + 13i) == complex<double>(0, -10));
-    CHECK(solve(7 * x + 3i == 3 * x + 13i) == complex<double>(0, 2.5));
-    CHECK(solve(4 * x + 8i == 3 * x + 2i) == complex<double>(0, -6));
-    CHECK(solve(2 * x + 8i == 3 * x + 2i) == complex<double>(0, 6));
-    CHECK(solve(4 * x + 8i == 3 * x + 2i + 7) == complex<double>(-7, 6));
-    CHECK(solve(4 * x + 8i - 22 == 3 * x + 2i + 7) == complex<double>(-29, 6));
-    CHECK(solve(4 * x + 8i - 100 == 3 * x + 2i + 7) == complex<double>(-107, 6));
-    CHECK(solve(2 * x + 4i - 100 == 3 * x + 5i + 7) == complex<double>(-107, -1));
-    CHECK(solve(2 * x + 4i - 10 == 3 * x + 66i) == complex<double>(-10, -62));
-    CHECK(solve(2 * x + 4i - 10 == 3.4 * x + 6.7i) == complex<double>(-7.1428, 1.9285));
-    CHECK(solve(x + 5i == 12 * x + 1i) == complex<double>(0, 0.3636));
-    CHECK(solve(2 * x + 4i - 10 == 12 * x + 1i) == complex<double>(-1, 0.03));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i) == complex<double>(0, 0));
-    CHECK(solve(7 * x + 3i == 3 * x + 13i) == complex<double>(0, 2.5));
-    CHECK(solve(4 * x + 8i == 3 * x + 2i) == complex<double>(0, -6));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i + 7i) == complex<double>(0, -1));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i + 7i - 7) == complex<double>(1, -1));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i + 7i - 14) == complex<double>(2, -1));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i + 7i - 21) == complex<double>(3, -1));
-    CHECK(solve(5 * x + 5i == 12 * x + 5i + 7i - 28) == complex<double>(4, -1));
-}
