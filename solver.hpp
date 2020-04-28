@@ -4,25 +4,40 @@
 
 #pragma once
 #include <complex>
-namespace solver {
-    class RealVariable{
-    public:
-        double x;
+namespace solver
+{
+    class RealVariable
+    {
+        double a,b,c;
 
+        //Constructor
     public:
-        RealVariable(): x(0){};
+        RealVariable(double a ,double b, double c);
+        RealVariable(): a(0), b(1), c(0){}
 
-    friend RealVariable operator +(const RealVariable &, const RealVariable &);
-    friend RealVariable operator +(const RealVariable &, const int);
-    friend RealVariable operator +(const int, const RealVariable &);
-    friend RealVariable operator -(const RealVariable &, const RealVariable &);
-    friend RealVariable operator -(const RealVariable &, const int);
-    friend RealVariable operator *(const int, const RealVariable &);
-    friend RealVariable operator /(const RealVariable &, const int);
-    friend RealVariable operator ^(RealVariable const &, const int);
-    friend RealVariable operator ==(const RealVariable &, const RealVariable &);
-    friend RealVariable operator ==(const RealVariable &, const int);
-};
+        //getters
+        const double& getA () const{ return a; }
+        const double& getB () const{ return b; }
+        const double& getC () const{ return c; }
+
+        // Operators overloading
+        friend RealVariable operator +(const RealVariable &, const RealVariable &);
+        friend RealVariable operator +(const RealVariable &, const double);
+        friend RealVariable operator +(const double, const RealVariable &);
+        friend RealVariable operator -(const RealVariable &, const RealVariable &);
+        friend RealVariable operator -(const RealVariable &, const double);
+        friend RealVariable operator-(const double y, const RealVariable& x);
+        friend RealVariable operator *(const double, const RealVariable &);
+        friend RealVariable operator /(const RealVariable &, const double);
+        friend RealVariable operator ^(RealVariable const &, const double);
+        friend RealVariable operator ==(const RealVariable &, const RealVariable &);
+        friend RealVariable operator ==(const RealVariable &, const double);
+        friend RealVariable operator ==(const double y, const RealVariable& x);
+    };
+    double solve(RealVariable );
+
+
+
 
     // COMPLEX
 
@@ -45,8 +60,6 @@ namespace solver {
     friend ComplexVariable operator ==(const ComplexVariable &, const int);
     friend ComplexVariable operator ==(const ComplexVariable &, const ComplexVariable &);
 };
-
-    double solve(RealVariable);//Function has to clear the varables of the reference
     std::complex<double> solve(ComplexVariable);
 
 }
