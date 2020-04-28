@@ -21,7 +21,7 @@ TEST_CASE("Test case for various equations")
 
     CHECK(solve(5*x - 6 = 3*x - 8) == -1);
     CHECK((solve((x ^ 2) == 64) == 8) || solve((x ^ 2) == 64) == -8);
-    CHECK((solve((y ^ 2) == -64) == eight);
+   // CHECK((solve((y ^ 2) == -64) == eight);
     CHECK(solve(12*x -18 == -6+8*x) == 3); 
     CHECK(solve(3*x+3+10-5*x == 8) == 2.5);
     CHECK(solve(17*x+12 == 54-4*x) == 2);
