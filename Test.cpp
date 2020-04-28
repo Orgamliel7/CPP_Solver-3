@@ -18,7 +18,7 @@ TEST_CASE("Test case for various equations")
     CHECK(solve(5*x - 6 = 3*x - 8) == -1);
     CHECK((solve((x ^ 2) == 64) == 8) || solve((x ^ 2) == 64) == -8);
     CHECK((solve((y ^ 2) == -64) == eight);
-    CHECK(solve(12*x -18 == -6+8*x) == 3; 
+    CHECK(solve(12*x -18 == -6+8*x) == 3); 
     CHECK(solve(3*x+3+10-5*x == 8) == 2.5);
     CHECK(solve(17*x+12 == 54-4*x) == 2);
     CHECK(solve(6*x-16 == 5*x-9) == 7);
@@ -26,24 +26,24 @@ TEST_CASE("Test case for various equations")
     CHECK(solve(5*x -3*x == 36-1*x) == 12);
     CHECK(solve(7*x-12+5 == 8*x-24) == 17);
     CHECK(solve(30 -1*x+12 == 3*x+2) == 10);
-    CHECK(solve (6*x-30 == 60-8*x) ==45/7;
+    CHECK(solve (6*x-30 == 60-8*x) ==45/7);
     CHECK(solve(9*x - 16 == 3*x-x+5) == 3);
     CHECK(solve(5*x -10 +2*x == 6*x+6-1*x) == 8);
     CHECK(solve(10*x+2 == 1*x+2) == 0);
-    CHECK(solve(5*x+5 == 2*x-10+6) == -3;
+    CHECK(solve(5*x+5 == 2*x-10+6) == -3);
 
     // complex test
     CHECK(solve((y ^ 2) == 16) == four);  
     CHECK(solve((y ^ 2) == -16) == four_i);  
-    CHECK((solve((x ^ 2 +4*x+1) == 10+4*x) == 3) || solve((x ^ 2 + 4 * x + 1) == 10 + 4 * x) == -3);
+    CHECK((solve((x ^ 2) +4*x+1 == 10+4*x) == 3) || (solve((x ^ 2) + 4 * x + 1 == 10 + 4 * x) == -3));
     CHECK(solve(y + 5i == 2 * y + 3i) == two_i);  
 
     CHECK(solve(1*x+150 == 4*x-30) == 60);
     CHECK(solve(1+1*x == -8-8*x) == -1);
-    CHECK(solve(2*x+7-5*x-12 == -8*x+3) == 8/5);
+    CHECK(solve(2*x+7-5*x-12 == -1*x+3) == -4);
     CHECK(solve(3*x+21 == 10*x) == 3);
     CHECK(solve(12*x+7-5*x-10 == -1*x+3) == 0.75);
-    CHECK(solve(13* x-8*x-4*x == 66-32-18) == 16);
+    CHECK(solve(13*x -8*x -4*x == 66-32-18) == 16);
     CHECK(solve(3*x == 9) == 3);
     CHECK(solve(7*x == 28) == 4);
     CHECK(solve(10*x == -60) == -6);
@@ -73,10 +73,10 @@ TEST_CASE("Test case for various equations")
     CHECK(solve(-115*+44-1*x+21 ==-4+13*x+8-9*x+1) == 0.5);
 
     // quadratic equation test
-    CHECK((solve((x ^ 2 -5 * x) == 6) == 6) || solve((x ^ 2 - 5 * x) == 6) == -1);
-    CHECK((solve((4*x) ^ 2 - 5 * x) == 6) == 2) || solve(((4 * x) ^ 2 - 5 * x) == 6) == -0.75);
-    CHECK((solve((4 * x) ^ 2 +2 * x) == 6) == 1) || solve(((4 * x) ^ 2 +2* x) == 6) == -1.5);
-    CHECK((solve((4 * x) ^ 2 + 10 * x) == 6) == 0.5) || solve(((4 * x) ^ 2 + 10 * x) == 6) == -3);
+    CHECK((solve((x ^ 2) -5 * x == 6) == 6) || (solve((x ^ 2) - 5 * x == 6) == -1));
+    CHECK((solve((4*x) ^ 2) - 5 * x == 6) == 2) || (solve(((4*x) ^2) - 5*x == 6) == -0.75));
+    CHECK((solve(((4 * x) ^ 2) + 2 * x == 6) == 1) || (solve(((4 * x) ^ 2) +2*x == 6) == -1.5));
+    CHECK((solve((4 * x) ^ 2) + 10 * x == 6) == 0.5) || (solve(((4 * x) ^ 2) + 10 * x == 6) == -3));
 
     CHECK(solve(1*x -4 ==12) == 16);
     CHECK(solve(7+1*x ==9) == 2);
