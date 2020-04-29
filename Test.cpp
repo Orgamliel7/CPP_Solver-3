@@ -66,12 +66,12 @@ TEST_CASE("Tests") {
     CHECK(solve(-45 * x + 30 + 31 * x == 32 + 16 * x + 28) == -1);
     CHECK(solve(-115 * +44 - 1 * x + 21 == -4 + 13 * x + 8 - 9 * x + 1) == 0.5);
 
-    // quadratic equation test
+    /* quadratic equation test
     CHECK((solve((x ^ 2) - 5 * x == 6) == 6) || (solve((x ^ 2) - 5 * x == 6) == -1));
     CHECK((solve((4 * x) ^ 2) - 5 * x == 6) == 2) || (solve(((4 * x) ^ 2) - 5 * x == 6) == -0.75));
     CHECK((solve(((4 * x) ^ 2) + 2 * x == 6) == 1) || (solve(((4 * x) ^ 2) + 2 * x == 6) == -1.5));
     CHECK((solve((4 * x) ^ 2) + 10 * x == 6) == 0.5) || (solve(((4 * x) ^ 2) + 10 * x == 6) == -3));
-
+    */
     CHECK(solve(1 * x - 4 == 12) == 16);
     CHECK(solve(7 + 1 * x == 9) == 2);
     CHECK(solve(3 == 1 * x - 5) == 8);
@@ -141,4 +141,10 @@ TEST_CASE("Tests") {
     CHECK(solve(1 * x == 2 * x + 21) == -21);
     CHECK(solve(777 == -8 + 2 + 2 + 4 - 13 + 10 + 3 + 1 * x - 1 * x + 1 * x) == 777);
 
+
+    CHECK(solve(0.5 * x == 6) == 12);
+    CHECK(solve(43 + 1 * x == 1) == 42);
+    CHECK(solve(8 - 2 + 3 == 1 * x - 5) == 14);
+    CHECK(solve(21 == -2 + 1 * x) == 23);
+    CHECK(solve(2 * x + 4 == 6) == 1);
 }
