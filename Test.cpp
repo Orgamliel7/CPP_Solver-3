@@ -1,6 +1,10 @@
 #include "doctest.h"
 #include <complex>
 #include "solver.hpp"
+#include <string>
+
+using namespace std;
+using namespace solver;
 
 using namespace std;
 using solver::solve, solver::RealVariable, solver::ComplexVariable;
@@ -152,9 +156,6 @@ TEST_CASE("Test case for various equations")
     CHECK(solve(777 == -8 + 2 + 2 + 4 - 13 + 10 + 3 + 1 * x - 1 * x + 1 * x) == 777);
 
 }
-
-
-
 
 
 
