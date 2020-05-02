@@ -95,7 +95,6 @@ double solver::solve(const RealVariable x) {
 
 
 // -----======== Part 2 ========------
-
 //ComplexVariable class
 ComplexVariable::ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) {
     this->a = a;
