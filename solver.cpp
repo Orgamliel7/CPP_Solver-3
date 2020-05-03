@@ -132,8 +132,9 @@ ComplexVariable solver::operator /(ComplexVariable const &x, const complex<doubl
 //operator ^ (power)
 ComplexVariable solver::operator^(ComplexVariable const & x, const complex<double> power) {
     if (power.real() == 0) {
-        return ComplexVariable(std::complex<double>(1.0, 0.0), std::complex<double>(0.0, 0.0),
-                               std::complex<double>(0.0, 0.0));
+        throw std::invalid_argument("The equations dont exist");
+        //return ComplexVariable(std::complex<double>(1.0, 0.0), std::complex<double>(0.0, 0.0),
+                              // std::complex<double>(0.0, 0.0));
     }
     if (power.real() == 1) {
         return ComplexVariable(std::complex<double>(0.0, 0.0), std::complex<double>(1.0, 0.0),
