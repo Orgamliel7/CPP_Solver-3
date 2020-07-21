@@ -1,6 +1,3 @@
-//
-// Created by shaharnik on 24/04/2020.
-//
 
 #pragma once
 #include <complex>
