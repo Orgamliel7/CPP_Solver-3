@@ -1,12 +1,10 @@
-//
-// Created by shaharnik on 24/04/2020.
-//
+
 #include "solver.hpp"
 #include <complex>
 #include <iostream>
 using namespace std;
 using namespace solver;
-RealVariable::RealVariable(double a ,double b, double c)
+RealVariable::RealVariable(double a ,double b, double c) // בנאי למשתנה ממשי 
 {
     this->a=a;
     this->b=b;
@@ -25,7 +23,7 @@ RealVariable solver::operator +(const double y, const RealVariable &x)
 {
     return RealVariable(x.getA(), x.getB(), x.getC()+y);
 }
-// Operator -
+// Operator - כל האופציות לחיסור
 RealVariable solver::operator -(const RealVariable &x, const RealVariable& y)
 {return RealVariable(x.getA()-y.getA(), x.getB()-y.getB(), x.getC()-y.getC());}
 RealVariable solver::operator -(const RealVariable & x, const double y)
@@ -42,39 +40,39 @@ RealVariable solver::operator /( const RealVariable &x ,const double y)
 }
 RealVariable solver::operator/(const double y, const RealVariable& x)
 {
-    if(x.getC()!=0)
+    if(x.getC()!=0) // run-time error שנימנע מחלוקה באפס שתוביל ל 
         return RealVariable(x.getA(), x.getB(), y / x.getC());
     else
         throw std::invalid_argument("Cant divide by zero!");
 }
-// Operator ^ power
+// Operator ^ power העלאה בחזקה
 RealVariable solver::operator ^(RealVariable const &x, const double power)
 {
-    if ((power>2) || (power<0) ){
+    if ((power>2) || (power<0) ){ // אם החזקה לא בין 0-2 כנדרש מאיתנו 
         throw std::invalid_argument("The power violates the task condition!");
     }
-    //Trivial cases
+    //Trivial cases מקרים תקינים
     if(power==0)
-        return RealVariable(0,0,1);
-    if(power==1)
+        return RealVariable(0,0,1); // כל ביטוי בחזקת אפס שווה לאחד
+    if(power==1) // נשאר על כנו
         return x;
-    //power equal to 2 cases:
+    // 2 יש לנו שני מקרים אם החזקה ממעלה
     if( power==2&& x.getC()!=0 &&x.getB()!=0 )
         return RealVariable(pow(x.getB(),power),x.getB()*x.getC()*power,pow(x.getC(),power));
     if( power==2&& x.getC()==0 && x.getB()!=0 )
-        return RealVariable(pow(x.getB(),power),0,0);
+        return RealVariable(pow(x.getB(),power),0,0); //  יעלה בחזקת שתיים b אם אין מספר חופשי רק  
 }
 // Operator ==
 RealVariable solver::operator ==(const RealVariable& x, const RealVariable& y){return x-y;}
 RealVariable solver::operator ==(const RealVariable& x, const double y){return x-y;}
 RealVariable solver::operator ==(const double y, const RealVariable& x){return y-x;}
 
-// Solve Function for RealVariable
+// פיתרון משוואה לממשיים
 double solver::solve(const RealVariable x) {
-    double a = x.getA();
+    double a = x.getA(); 
     double b = x.getB();
     double c = x.getC();
-    // need throw error about power>2
+    // מקרי קצה שיזרקו שגיאה
     if(a==0) {
         if(b==0 && c!=0)
             throw std::out_of_range {" there is no result "};
@@ -96,13 +94,13 @@ double solver::solve(const RealVariable x) {
 
 // -----======== Part 2 ========------
 //ComplexVariable class
-ComplexVariable::ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) {
+ComplexVariable::ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) { // בנאי למשתנה מרוכב
     this->a = a;
     this->b = b;
     this->c = c;
 }
 //operator +
-ComplexVariable solver::operator +(const ComplexVariable &x, const ComplexVariable &y){
+ComplexVariable solver::operator +(const ComplexVariable &x, const ComplexVariable &y){  // העמסת אופרטור + לחיבור שני מרוכבים 
     return ComplexVariable(x.getA() + y.getA(), x.getB() + y.getB(), x.getC() + y.getC());
 }
 ComplexVariable solver::operator +(const ComplexVariable &x, std::complex<double> y){
@@ -147,7 +145,7 @@ ComplexVariable solver::operator^(ComplexVariable const & x, const complex<doubl
     else if(power.real()>2)
         throw std::invalid_argument("The power violates the task condition!");
 }
-//operator ==
+//operator == העמסת האופרטור שבדיקת השיוויון תשלח לחיסור ביניהם ואם התוצאה 0 אז יחזיר אמת
 ComplexVariable solver::operator ==(const ComplexVariable &x, const int y){
     return x-y;
 }
