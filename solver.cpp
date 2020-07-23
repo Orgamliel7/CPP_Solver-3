@@ -127,22 +127,20 @@ ComplexVariable solver::operator*(const complex<double> n, ComplexVariable const
 ComplexVariable solver::operator /(ComplexVariable const &x, const complex<double> n){
     return ComplexVariable(x.getA() / n, x.getB() / n, x.getC()/n);
 }
-//operator ^ (power)
+//operator ^ (power) חזקה
 ComplexVariable solver::operator^(ComplexVariable const & x, const complex<double> power) {
-    if (power.real() == 0) {
-        throw std::invalid_argument("The equations dont exist");
-        //return ComplexVariable(std::complex<double>(1.0, 0.0), std::complex<double>(0.0, 0.0),
-                              // std::complex<double>(0.0, 0.0));
+    if (power.real() == 0) { // אם החזקה שווה לאפס
+        throw std::invalid_argument("The equations dont exist"); //נזרוק שגיאה כי אין משוואה
     }
-    if (power.real() == 1) {
+    if (power.real() == 1) { // אם החזקה שווה 1 
         return ComplexVariable(std::complex<double>(0.0, 0.0), std::complex<double>(1.0, 0.0),
                                std::complex<double>(0.0, 0.0));
     }
-    //power equal to 2 cases:
+    //אם החזקה ממעלה שנייה
     if (power.real() == 2) {
         return ComplexVariable(x.getA() + x.getB(), 0, x.getC());
     }
-    else if(power.real()>2)
+    else if(power.real()>2) // מקרה קצה בו אנו לא מתעסקים במטלה , חזקה גדולה מ2
         throw std::invalid_argument("The power violates the task condition!");
 }
 //operator == העמסת האופרטור שבדיקת השיוויון תשלח לחיסור ביניהם ואם התוצאה 0 אז יחזיר אמת
@@ -152,7 +150,7 @@ ComplexVariable solver::operator ==(const ComplexVariable &x, const int y){
 ComplexVariable solver::operator ==(const ComplexVariable &x, const ComplexVariable &y){
     return x-y;
 }
-complex<double> solver::solve(const ComplexVariable &x) {
+complex<double> solver::solve(const ComplexVariable &x) { //  
     complex<double> a = x.getA();
     complex<double> b = x.getB();
     complex<double> c = x.getC();
