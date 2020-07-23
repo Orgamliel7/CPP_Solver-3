@@ -94,19 +94,19 @@ double solver::solve(const RealVariable x) {
 
 // -----======== Part 2 ========------
 //ComplexVariable class
-ComplexVariable::ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) { // בנאי למשתנה מרוכב
-    this->a = a;
-    this->b = b;
-    this->c = c;
+ComplexVariable::ComplexVariable(std::complex<double> a, std::complex<double> b, std::complex<double> c) { // בנאי למחלקת מרוכבים ע"פ דרישות המטלה
+    this->a = a; // x^2
+    this->b = b; // x^1
+    this->c = c;  //x^0
 }
 //operator +
-ComplexVariable solver::operator +(const ComplexVariable &x, const ComplexVariable &y){  // העמסת אופרטור + לחיבור שני מרוכבים 
+ComplexVariable solver::operator +(const ComplexVariable &x, const ComplexVariable &y){  // העמסת אופרטור + לחיבור שתי מחלקות מרוכבים 
     return ComplexVariable(x.getA() + y.getA(), x.getB() + y.getB(), x.getC() + y.getC());
 }
-ComplexVariable solver::operator +(const ComplexVariable &x, std::complex<double> y){
+ComplexVariable solver::operator +(const ComplexVariable &x, std::complex<double> y){ // העמסת אופרטור + לחיבור מחלקת מרוכבים עם מספר מרוכב 
     return ComplexVariable(x.getA(), x.getB(), x.getC() + y);
 }
-ComplexVariable solver::operator +(std::complex<double> y, const ComplexVariable &x){
+ComplexVariable solver::operator +(std::complex<double> y, const ComplexVariable &x){ // העמסת אופרטור + לחיבור מחלקת מרוכבים עם מספר מרוכב ,כנ"ל סדר הפוך בקלט
     return ComplexVariable(x.getA(), x.getB() , x.getC()+y);
 }
 //operator -
@@ -150,16 +150,16 @@ ComplexVariable solver::operator ==(const ComplexVariable &x, const int y){
 ComplexVariable solver::operator ==(const ComplexVariable &x, const ComplexVariable &y){
     return x-y;
 }
-complex<double> solver::solve(const ComplexVariable &x) { //  
+complex<double> solver::solve(const ComplexVariable &x) { //     פונקציית פיתרון למחלקה של מרוכבים שמחזירה מספר מרוכב מסוג ליטרל טייפ של השפה  
     complex<double> a = x.getA();
     complex<double> b = x.getB();
     complex<double> c = x.getC();
-    if(a == std::complex<double>(0.0,0.0)) {
-        if(b == std::complex<double>(0.0,0.0) && c != std::complex<double>(0.0,0.0))
+    if(a == std::complex<double>(0.0,0.0)) { // אם המרוכב הראשון שווה 0
+        if(b == std::complex<double>(0.0,0.0) && c != std::complex<double>(0.0,0.0))  // אם המרוכב השני שווה 0 ורק החופשי שונה מ-0, אין פיתרון כי אין נעלם
             __throw_runtime_error("No solution");
-        if(b == std::complex<double>(0.0,0.0) && c == std::complex<double>(0.0,0.0))
+        if(b == std::complex<double>(0.0,0.0) && c == std::complex<double>(0.0,0.0)) // אם כולם אפסים נחזיר מרוכב אפסי
             return complex<double>(0,0);
-        else return c/-b;
+        else return c/-b; // אחרת, נחלק את החופשי במינוס בי ונקבל את פיתרון המשוואה
     }
-    return ( (-b + sqrt(b*b -std::complex<double>(4.0,0.0)*a*c)) / (std::complex<double>(2.0,0.0)*a) );
+    return ( (-b + sqrt(b*b -std::complex<double>(4.0,0.0)*a*c)) / (std::complex<double>(2.0,0.0)*a) );// אם איי לא אפסי, נפתור ע"פ נוסחת השורשים הקלאסית
 }
